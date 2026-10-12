@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { useAppDispatch, useAppSelector } from '../redux/hook';
 import { cerrarSesion } from '../redux/slices/authSlice';
+import { quitarPush } from '../lib/notifications';
 
 export default function PerfilScreen() {
   const dispatch = useAppDispatch();
@@ -11,7 +12,10 @@ export default function PerfilScreen() {
       <Text style={styles.nombre}>{usuario?.nombre}</Text>
       <Text>{usuario?.correo}</Text>
       <Text style={styles.rol}>Rol: {usuario?.rol}</Text>
-      <Pressable style={styles.boton} onPress={() => dispatch(cerrarSesion())}>
+      <Pressable style={styles.boton} onPress={async () => {
+  await quitarPush();
+  dispatch(cerrarSesion());
+}}>
         <Text style={styles.botonTxt}>Cerrar sesión</Text>
       </Pressable>
     </View>

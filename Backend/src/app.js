@@ -30,7 +30,7 @@ app.get('/health', async (req, res) => {
   }
 });
 
-app.use('/Usuarios', router);
+app.use('/usuarios', router);
 app.use('/cines', routerC);
 app.use('/peliculas', routerP);
 app.use('/funciones', routerFun);

@@ -33,6 +33,17 @@ export const cargarAsientos = createAsyncThunk<MapaAsientos, number, { rejectVal
   }
 );
 
+export const cargarTodasFunciones = createAsyncThunk<Funcion[], void, { rejectValue: string }>(
+  'funciones/todas',
+  async (_, { rejectWithValue }) => {
+    try {
+      return await api<Funcion[]>('/funciones');
+    } catch (e) {
+      return rejectWithValue((e as Error).message);
+    }
+  }
+);
+
 const funcionesSlice = createSlice({
   name: 'funciones',
   initialState,
@@ -68,6 +79,18 @@ const funcionesSlice = createSlice({
       state.cargando = false;
       state.error = a.payload ?? 'Error inesperado';
     });
+    b.addCase(cargarTodasFunciones.pending, (state) => {
+  state.cargando = true;
+  state.error = null;
+});
+b.addCase(cargarTodasFunciones.fulfilled, (state, a) => {
+  state.cargando = false;
+  state.items = a.payload;
+});
+b.addCase(cargarTodasFunciones.rejected, (state, a) => {
+  state.cargando = false;
+  state.error = a.payload ?? 'Error inesperado';
+});
   },
 });
 

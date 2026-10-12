@@ -9,6 +9,7 @@ import EstadoCarga from '../components/EstadoCarga';
 import { formatearFecha } from '../lib/fecha';
 import type { Asiento } from '../types/funcion';
 import type { RootStackParams } from '../navigation/AppNavigation';
+import { programarRecordatorio } from '../lib/notifications';
 
 type Props = NativeStackScreenProps<RootStackParams, 'MapaAsientos'>;
 
@@ -47,13 +48,18 @@ export default function MapaAsientosScreen({ route, navigation }: Props) {
   };
 
   const comprar = async () => {
-    try {
-      const r = await dispatch(crearReserva({ funcionId, asientos: seleccion })).unwrap();
-      Alert.alert('Reserva confirmada', `Tu código es ${r.codigo}`, [
-        { text: 'OK', onPress: () => navigation.popToTop() },
-      ]);
-    } catch (e) {
-      // Si falla (por ejemplo 409: asiento ocupado) se muestra el mensaje y se recarga el mapa
+ try {
+  const r = await dispatch(crearReserva({ funcionId, asientos: seleccion })).unwrap();
+  let recordatorio = false;
+  if (mapa) {
+    recordatorio = await programarRecordatorio(r.codigo, mapa.funcion.pelicula, mapa.funcion.fecha_hora);
+  }
+  Alert.alert(
+    'Reserva confirmada',
+    `Tu código es ${r.codigo}${recordatorio ? '\nTe avisaremos 1 hora antes de la función.' : ''}`,
+    [{ text: 'OK', onPress: () => navigation.popToTop() }]
+  );
+} catch (e) {
       Alert.alert('No se pudo reservar', typeof e === 'string' ? e : 'Error inesperado');
       setSeleccion([]);
       cargar();

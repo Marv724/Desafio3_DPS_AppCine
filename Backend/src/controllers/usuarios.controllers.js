@@ -19,7 +19,7 @@ const firma = (f) => jwt.sign({id: f.id, rol: f.rol}, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN || '7d'
 });
 
-export const reguistro = async(req, res, next) => {
+export const registro = async(req, res, next) => {
     try{
         const datos = reguistroSchema.safeParse(req.body);
         if(!datos.success){
