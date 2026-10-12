@@ -38,6 +38,7 @@ app.use('/reservas', routerR);
 app.use('/dispositivos', routerD);
 app.use('/dashboard', routerDs);
 app.use('/notificaciones', routerN);
+app.get('/', (req, res) => res.json({ message: 'API Cine funcionando' }));
 app.use(NoEncontrado);
 app.use(manejarErrores);
 
