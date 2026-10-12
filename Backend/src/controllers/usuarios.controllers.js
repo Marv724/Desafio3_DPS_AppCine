@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import {z} from 'zod';
-import { pool } from '../config';
+import { pool } from '../config.js';
 import { token } from 'morgan';
 
 const reguistroSchema = z.object({

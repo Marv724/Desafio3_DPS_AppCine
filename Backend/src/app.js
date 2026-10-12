@@ -3,7 +3,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { pool } from './config.js';
-import usuariosRouter from './routes/usuarios.routes.js'
+import router from './routes/usuarios.routes.js';
 import { NoEncontrado, manejarErrores } from './middlewares/errores.js';
 
 const app = express();
@@ -23,7 +23,7 @@ app.get('/health', async (req, res) => {
   }
 });
 
-app.use('/Usaurios', usuariosRouter);
+app.use('/Usuarios', router);
 app.use(NoEncontrado);
 app.use(manejarErrores);
 

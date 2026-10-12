@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { reguistro, login } from "../controllers/usuarios.controllers";
+import { reguistro, login } from "../controllers/usuarios.controllers.js";
 
 const router = Router();
 router.post('/reguisto', reguistro);
