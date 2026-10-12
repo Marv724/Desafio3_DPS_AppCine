@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { auth } from "../middlewares/aunth.js";
 import { soloRol } from "../middlewares/rol.js";
-import { listar, crear, reprogramar, cancelar, asientos } from "../controllers/cines.controllers.js";
+import { listar, crear, reprogramar, cancelar, asientos } from "../controllers/funciones.controllers.js";
 import router from "./usuarios.routes.js";
 
 const routerFun = Router();

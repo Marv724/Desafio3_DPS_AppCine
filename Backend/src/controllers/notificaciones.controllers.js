@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { validar } from '../utils/validar.js';
-import { enviarPush, tokensDeClientes } from '../services/push.js';
+import { enviarPush, tokesDeCliente } from '../services/push.js';
 
 export const aviso = async (req, res, next) => {
   try {

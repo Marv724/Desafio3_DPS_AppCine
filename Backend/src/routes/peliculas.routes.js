@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { auth } from "../middlewares/aunth.js";
 import { soloRol } from "../middlewares/rol.js";
-import { listar, detalle, crear, editar, cambiarEstado, eliminar  } from "../controllers/cines.controllers.js";
+import { listar, detalle, crear, editar, cambiarEstado, eliminar  } from "../controllers/peliculas.controllers.js";
 import router from "./usuarios.routes.js";
 
 const routerP = Router();

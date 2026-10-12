@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { pool } from '../config.js';
-import { validar, normalizarFecha, FECHA_REGEX } from '../utils/validar.js';
+import { validar, FECHA_REGEX } from '../utils/validar.js';
 import { enviarPush, tokensDeUsuarios } from '../services/push.js';
 
 const BASE = `
