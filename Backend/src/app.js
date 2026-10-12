@@ -4,6 +4,13 @@ import helmet from 'helmet';
 import morgan from 'morgan';
 import { pool } from './config.js';
 import router from './routes/usuarios.routes.js';
+import routerFun from './routes/funciones.routes.js';
+import routerC from "./routes/cines.routes.js"
+import routerDs from './routes/dashboard.routes.js'
+import routerD from './routes/dispositivos.routes.js';
+import routerN from './routes/notificaciones.routes.js';
+import routerP from './routes/peliculas.routes.js'
+import routerR from './routes/reservas.routes.js';
 import { NoEncontrado, manejarErrores } from './middlewares/errores.js';
 
 const app = express();
@@ -24,6 +31,13 @@ app.get('/health', async (req, res) => {
 });
 
 app.use('/Usuarios', router);
+app.use('/cines', routerC);
+app.use('/peliculas', routerP);
+app.use('/funciones', routerFun);
+app.use('/reservas', routerR);
+app.use('/dispositivos', routerD);
+app.use('/dashboard', routerDs);
+app.use('/notificaciones', routerN);
 app.use(NoEncontrado);
 app.use(manejarErrores);
 
