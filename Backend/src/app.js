@@ -3,6 +3,8 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { pool } from './config.js';
+import usuariosRouter from './routes/usuarios.routes.js'
+import { NoEncontrado, manejarErrores } from './middlewares/errores.js';
 
 const app = express();
 
@@ -20,5 +22,9 @@ app.get('/health', async (req, res) => {
     res.status(500).json({ status: 'error', db: 'sin conexión' });
   }
 });
+
+app.use('/Usaurios', usuariosRouter);
+app.use(NoEncontrado);
+app.use(manejarErrores);
 
 export default app;
