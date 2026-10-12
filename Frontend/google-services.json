@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1022260405282",
+    "project_id": "desafio3-frontend",
+    "storage_bucket": "desafio3-frontend.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1022260405282:android:559241d6981e27f052967b",
+        "android_client_info": {
+          "package_name": "sv.edu.udb.cv231277"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoeaE9wIwlhRb5sopDKxnLbuHOB7sqwS0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
