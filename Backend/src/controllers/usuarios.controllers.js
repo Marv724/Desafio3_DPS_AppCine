@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import {z} from 'zod';
 import { pool } from '../config.js';
-import { token } from 'morgan';
 
 const reguistroSchema = z.object({
     nombre: z.string().min(2),
@@ -23,7 +22,7 @@ export const registro = async(req, res, next) => {
     try{
         const datos = reguistroSchema.safeParse(req.body);
         if(!datos.success){
-            return re.status(400).json({message: 'Datos invalidos revisar nuevamente'})
+            return res.status(400).json({message: 'Datos invalidos revisar nuevamente'})
         }
         const {nombre, correo, clave} = datos.data;
         const [existe] = await pool.query('SELECT id FROM usuarios WHERE correo = ?', [correo]);
