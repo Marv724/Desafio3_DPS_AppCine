@@ -45,7 +45,7 @@ export default function RegistroScreen({ navigation }: Props) {
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
       <Pressable style={styles.boton} onPress={crear} disabled={cargando}>
-        {cargando ? <ActivityIndicator color="#fff" /> : <Text style={styles.botonTxt}>Registrarme</Text>}
+        {cargando ? <ActivityIndicator /> : <Text style={styles.botonTxt}>Registrarme</Text>}
       </Pressable>
       <Pressable onPress={() => navigation.goBack()}>
         <Text style={styles.enlace}>Ya tengo cuenta</Text>
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   titulo: { fontSize: 28, fontWeight: 'bold', textAlign: 'center', marginBottom: 16 },
   input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 8, padding: 12 },
   boton: { backgroundColor: '#1e3a8a', padding: 14, borderRadius: 8, alignItems: 'center' },
-  botonTxt: { color: '#fff', fontWeight: '600' },
+  botonTxt: {fontWeight: '600' },
   error: { color: '#b91c1c' },
   enlace: { color: '#1e3a8a', textAlign: 'center', marginTop: 8 },
 });

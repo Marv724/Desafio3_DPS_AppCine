@@ -43,7 +43,7 @@ export default function LoginScreen({ navigation }: Props) {
       />
       {error ? <Text style={styles.error}>{error}</Text> : null}
       <Pressable style={styles.boton} onPress={entrar} disabled={cargando}>
-        {cargando ? <ActivityIndicator color="#fff" /> : <Text style={styles.botonTxt}>Entrar</Text>}
+        {cargando ? <ActivityIndicator /> : <Text style={styles.botonTxt}>Entrar</Text>}
       </Pressable>
       <Pressable
         onPress={() => {
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
   titulo: { fontSize: 32, fontWeight: 'bold', textAlign: 'center', marginBottom: 16 },
   input: { borderWidth: 1, borderColor: '#ccc', borderRadius: 8, padding: 12 },
   boton: { backgroundColor: '#1e3a8a', padding: 14, borderRadius: 8, alignItems: 'center' },
-  botonTxt: { color: '#fff', fontWeight: '600' },
+  botonTxt: { fontWeight: '600' },
   error: { color: '#b91c1c' },
   enlace: { color: '#1e3a8a', textAlign: 'center', marginTop: 8 },
 });
