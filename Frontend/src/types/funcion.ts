@@ -17,3 +17,19 @@ export interface Asiento {
   columna: number;
   estado: 'libre' | 'ocupado';
 }
+
+export interface FuncionMapa {
+  id: number;
+  fecha_hora: string;
+  estado: string;
+  pelicula: string;
+  precio: string;
+  sala: string;
+  filas: number;
+  columnas: number;
+}
+
+export interface MapaAsientos {
+  funcion: FuncionMapa;
+  asientos: Asiento[];
+}

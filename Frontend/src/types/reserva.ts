@@ -12,3 +12,12 @@ export interface Reserva {
   cine: string;
   asientos: string[];
 }
+
+export interface ReservaNueva {
+  id: number;
+  codigo: string;
+  funcionId: number;
+  total: number;
+  estado: 'activa';
+  asientos: string[];
+}
