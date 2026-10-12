@@ -24,15 +24,29 @@ export async function api<T>(
   opciones: { method?: string; body?: unknown } = {}
 ): Promise<T> {
   const t = await obtenerToken();
-  const res = await fetch(`${BASE_URL}${ruta}`, {
-    method: opciones.method ?? 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      ...(t ? { Authorization: `Bearer ${t}` } : {}),
-    },
-    body: opciones.body ? JSON.stringify(opciones.body) : undefined,
-  });
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) throw new Error(data.message ?? 'Error de red');
-  return data as T;
+  const controlador = new AbortController();
+  const limite = setTimeout(() => controlador.abort(), 15000);
+
+  try {
+    const res = await fetch(`${BASE_URL}${ruta}`, {
+      method: opciones.method ?? 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache',
+        ...(t ? { Authorization: `Bearer ${t}` } : {}),
+      },
+      body: opciones.body ? JSON.stringify(opciones.body) : undefined,
+      signal: controlador.signal,
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.message ?? `Error de red (${res.status})`);
+    return data as T;
+  } catch (e) {
+    if ((e as Error).name === 'AbortError') {
+      throw new Error('El servidor tardó demasiado en responder');
+    }
+    throw e;
+  } finally {
+    clearTimeout(limite);
+  }
 }
